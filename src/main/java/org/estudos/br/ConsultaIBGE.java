@@ -11,7 +11,7 @@ import java.net.URL;
  */
 public class ConsultaIBGE {
 
-    // URL base da API do IBGE para estados
+
     private static final String ESTADOS_API_URL = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/";
 
     // URL base da API do IBGE para distritos
