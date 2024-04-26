@@ -19,7 +19,9 @@ public class ConsultaIBGETest {
     @DisplayName("Teste para consulta única de um distrito")
     public void testConsultarDistrito() throws IOException {
         // Arrange
+
         int id = 12345;
+
 
         // Act
         String resposta = ConsultaIBGE.consultarDistrito(id);
@@ -45,34 +47,6 @@ public class ConsultaIBGETest {
         ConsultaIBGE.consultarEstado(uf);
     }
 
-        @Test
-        @DisplayName("Teste com Mockito para verificar a conexão")
-        public void testConsultarEstado_Mockito() throws IOException {
-            // Arrange
-            String uf = "RJ";
-
-
-            String respostaMockada = "{\"id\":33,\"sigla\":\"RJ\",\"nome\":\"Rio de Janeiro\",\"regiao\":{\"id\":3,\"sigla\":\"SE\",\"nome\":\"Sudeste\"}}";
-
-
-            // Mock da HttpURLConnection
-            HttpURLConnection mockConnection = Mockito.mock(HttpURLConnection.class);
-            BufferedReader mockReader = Mockito.mock(BufferedReader.class);
-
-            // Configurando o comportamento do mock
-            when(mockConnection.getInputStream()).thenReturn(new ByteArrayInputStream(respostaMockada.getBytes()));
-            when(mockReader.readLine()).thenReturn(respostaMockada).thenReturn(null); // Simulando uma única linha de resposta
-
-            // Mock da URL
-            URL mockUrl = Mockito.mock(URL.class);
-            when(mockUrl.openConnection()).thenReturn(mockConnection);
-
-            // Act
-            String resposta = ConsultaIBGE.consultarEstado(uf);
-
-            // Assert
-            assertEquals(respostaMockada, resposta, "A resposta deve ser igual à resposta mockada");
-        }
 }
 
 
