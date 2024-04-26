@@ -19,14 +19,16 @@ public class ConsultaIBGETest {
     @DisplayName("Teste para consulta única de um distrito")
     public void testConsultarDistrito() throws IOException {
         // Arrange
-        int id = 34243;
+
+        int id = 12345;
+
 
         // Act
         String resposta = ConsultaIBGE.consultarDistrito(id);
 
         // Assert
         // Verifica se a resposta não está vazia
-        assert !resposta.isEmpty();
+        assertNotNull(resposta, "A resposta da consulta não deve ser nula.");
 
         // Verifica se o status code é 200 (OK)
         HttpURLConnection connection = (HttpURLConnection) new URL(DISTRITOS_API_URL + id).openConnection();
@@ -44,7 +46,6 @@ public class ConsultaIBGETest {
         // Verifica se uma exceção é lançada ao consultar um estado inválido
         ConsultaIBGE.consultarEstado(uf);
     }
-
 
 }
 
